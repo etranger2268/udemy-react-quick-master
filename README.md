@@ -1,73 +1,80 @@
-# React + TypeScript + Vite
+# udemy-react-quick-master
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<https://www.udemy.com/course/react-quick-master/>
 
-Currently, two official plugins are available:
+## 🚀 技術スタック
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Vite](https://ja.vite.dev/)
+- [React](https://ja.react.dev/)
+- [TypeScript](https://www.typescriptlang.org/ja/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Biome](https://biomejs.dev/ja/)
+- [lefthook](https://www.npmjs.com/package/lefthook)
 
-## React Compiler
+## 🛠️ セットアップ
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### 1. 依存関係のインストール
 
-## Expanding the ESLint configuration
+プロジェクトの依存関係をインストールします。
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+``` bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. lefthookの準備
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+lefthookのgitフックを準備します。
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+``` bash
+npm run prepare
+```
+
+### 3. 開発サーバーの起動
+
+Vite開発サーバーを起動します。  
+ファイルの変更を監視し、自動的にブラウザを更新します。
+
+``` bash
+npm run dev
+```
+
+### 4. 型チェック
+
+TypeScriptによる型チェックを実行します。
+
+``` bash
+npm run type-check
+```
+
+### 5. コードの自動修正
+
+[Biome](https://biomejs.dev/)を使い、リントエラーやフォーマットの問題を自動で修正します。
+
+``` bash
+npm run fix
+```
+
+### 6. 本番用ビルド
+
+本番用のアプリケーションを`dist`ディレクトリにビルドします。  
+ビルド前に型チェックとBiomeによるLintチェックが実行されます。
+
+``` bash
+npm run build
+```
+
+### 7. 本番用プレビュー
+
+ビルドされたアプリケーションをローカルでプレビューします。  
+
+``` bash
+npm run preview
+```
+
+### 8. ビルド成果物の削除
+
+`dist`ディレクトリを削除します。
+
+``` bash
+npm run clean
 ```
