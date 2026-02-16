@@ -1,13 +1,14 @@
 type SquareProps = {
-  value: string;
+  value: string | null;
   onSquareClick: () => void;
+  isGray?: boolean;
 };
 
-const Square = ({ value, onSquareClick }: SquareProps) => {
+const Square = ({ value, onSquareClick, isGray }: SquareProps) => {
   return (
     <button
       type="button"
-      className="w-8.5 h-8.5 bg-red-100 border border-[#999] float-left text-2xl font-bold leading-8.5 -mr-px p-0 text-center"
+      className={`w-8.5 h-8.5 ${isGray ? 'bg-yellow-200' : 'bg-white'} border float-left text-2xl font-bold leading-8.5 -mr-px p-0 text-center`}
       onClick={onSquareClick}
     >
       {value}

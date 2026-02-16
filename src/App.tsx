@@ -1,13 +1,9 @@
-import Square from '@/_components/Square';
+import Game from '@/_components/Game';
 
 const App = () => {
-  const handleClick = () => console.log('click');
-
   return (
     <div className="max-w-md mx-auto m-4">
-      <Square value="o" onSquareClick={handleClick} />
-      <Square value="o" onSquareClick={handleClick} />
-      <Square value="o" onSquareClick={handleClick} />
+      <Game />
     </div>
   );
 };
