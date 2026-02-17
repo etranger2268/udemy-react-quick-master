@@ -49,10 +49,15 @@ const Game = () => {
   return (
     <div className="flex flex-row">
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <Board
+          xIsNext={xIsNext}
+          squares={currentSquares}
+          onPlay={handlePlay}
+          count={count}
+          handleNextGame={handleReset}
+        />
       </div>
       <div className="ml-15 space-y-4">
-        <h2 className="text-sm font-medium mb-2">Click Count: {count}</h2>
         <div>
           <button
             type="button"
