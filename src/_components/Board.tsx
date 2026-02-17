@@ -11,7 +11,8 @@ type BoardProps = {
 
 const Board = ({ xIsNext, squares, onPlay, count, handleNextGame }: BoardProps) => {
   const handleClick = (index: number) => {
-    if (calculateWinner(squares) || squares[index]) {
+    const { winner } = calculateWinner(squares);
+    if (winner || squares[index]) {
       return;
     }
     const nextSquares = [...squares];
@@ -23,7 +24,8 @@ const Board = ({ xIsNext, squares, onPlay, count, handleNextGame }: BoardProps) 
     onPlay(nextSquares);
   };
 
-  const winner = calculateWinner(squares);
+  const { winner, lines } = calculateWinner(squares);
+
   const status = winner ? `Winner: ${winner}` : `Next Player: ${xIsNext ? 'X' : 'O'}`;
 
   return (
@@ -32,19 +34,55 @@ const Board = ({ xIsNext, squares, onPlay, count, handleNextGame }: BoardProps) 
         <h2 className="font-semibold">{status}</h2>
       </div>
       <div className="flex">
-        <Square value={squares[0] ?? null} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1] ?? null} onSquareClick={() => handleClick(1)} isGray={true} />
-        <Square value={squares[2] ?? null} onSquareClick={() => handleClick(2)} />
+        <Square
+          value={squares[0] ?? null}
+          onSquareClick={() => handleClick(0)}
+          isRed={lines.includes(0)}
+        />
+        <Square
+          value={squares[1] ?? null}
+          onSquareClick={() => handleClick(1)}
+          isRed={lines.includes(1)}
+        />
+        <Square
+          value={squares[2] ?? null}
+          onSquareClick={() => handleClick(2)}
+          isRed={lines.includes(2)}
+        />
       </div>
       <div className="flex">
-        <Square value={squares[3] ?? null} onSquareClick={() => handleClick(3)} isGray={true} />
-        <Square value={squares[4] ?? null} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5] ?? null} onSquareClick={() => handleClick(5)} isGray={true} />
+        <Square
+          value={squares[3] ?? null}
+          onSquareClick={() => handleClick(3)}
+          isRed={lines.includes(3)}
+        />
+        <Square
+          value={squares[4] ?? null}
+          onSquareClick={() => handleClick(4)}
+          isRed={lines.includes(4)}
+        />
+        <Square
+          value={squares[5] ?? null}
+          onSquareClick={() => handleClick(5)}
+          isRed={lines.includes(5)}
+        />
       </div>
       <div className="flex">
-        <Square value={squares[6] ?? null} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7] ?? null} onSquareClick={() => handleClick(7)} isGray={true} />
-        <Square value={squares[8] ?? null} onSquareClick={() => handleClick(8)} />
+        <Square
+          value={squares[6] ?? null}
+          onSquareClick={() => handleClick(6)}
+          isRed={lines.includes(6)}
+        />
+        <Square
+          value={squares[7] ?? null}
+          onSquareClick={() => handleClick(7)}
+          isRed={lines.includes(7)}
+        />
+        <Square
+          value={squares[8] ?? null}
+          onSquareClick={() => handleClick(8)}
+          isRed={lines.includes(8)}
+        />
       </div>
       <div className="w-full flex justify-center">
         <h2 className="text-sm font-medium mb-2">Click Count: {count}</h2>
