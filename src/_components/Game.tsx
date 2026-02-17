@@ -8,6 +8,11 @@ const Game = () => {
   const xIsNext = currentMove % 2 === 0;
   const currentSquares = history[currentMove] ?? Array(9).fill(null);
 
+  const handleReset = () => {
+    setHistory([Array(9).fill(null)]);
+    setCurrentMove(0);
+  };
+
   const handlePlay = (nextSquares: (string | null)[]) => {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
@@ -43,9 +48,18 @@ const Game = () => {
       <div className="game-board">
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
-      <div className="ml-15">
+      <div className="ml-15 space-y-4">
         <div className="text-sm font-medium mb-2">Click Count: {count}</div>
         <ol className="list-decimal space-y-2">{moves}</ol>
+        <div>
+          <button
+            type="button"
+            onClick={handleReset}
+            className="text-sm font-medium py-1 px-2 bg-gray-500 text-white rounded-md transition-all duration-300 hover:opacity-75"
+          >
+            reset
+          </button>
+        </div>
       </div>
     </div>
   );
