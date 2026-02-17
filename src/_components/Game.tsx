@@ -3,6 +3,7 @@ import Board from '@/_components/Board';
 
 const Game = () => {
   const [count, setCount] = useState<number>(0);
+  const [isHistoryVisible, setIsHistoryVisible] = useState<boolean>(true);
   const [history, setHistory] = useState<(string | null)[][]>([Array(9).fill(null)]);
   const [currentMove, setCurrentMove] = useState<number>(0);
   const xIsNext = currentMove % 2 === 0;
@@ -12,6 +13,8 @@ const Game = () => {
     setHistory([Array(9).fill(null)]);
     setCurrentMove(0);
   };
+
+  const toggleHistoryVisible = () => setIsHistoryVisible((prev) => !prev);
 
   const handlePlay = (nextSquares: (string | null)[]) => {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -49,8 +52,17 @@ const Game = () => {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="ml-15 space-y-4">
-        <div className="text-sm font-medium mb-2">Click Count: {count}</div>
-        <ol className="list-decimal space-y-2">{moves}</ol>
+        <h2 className="text-sm font-medium mb-2">Click Count: {count}</h2>
+        <div>
+          <button
+            type="button"
+            className="py-1 px-2 text-sm bg-blue-500 font-medium rounded-md text-white transition-all duration-300"
+            onClick={toggleHistoryVisible}
+          >
+            {isHistoryVisible ? 'Hide' : 'Display'}
+          </button>
+        </div>
+        {isHistoryVisible && <ol className="list-decimal space-y-2">{moves}</ol>}
         <div>
           <button
             type="button"
